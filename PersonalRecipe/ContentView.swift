@@ -1,24 +1,23 @@
-//
-//  ContentView.swift
-//  PersonalRecipe
-//
-//  Created by Luka Babunadze on 05.03.25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var recipes: [Recipe] = DataLoader.loadRecipes()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            HomeView(recipes: $recipes)
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
+                }
+            Text("Cooking Tab")
+                .tabItem {
+                    Label("Cooking", systemImage: "flame.fill")
+                }
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
 }
+
