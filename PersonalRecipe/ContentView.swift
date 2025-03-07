@@ -1,5 +1,6 @@
 import SwiftUI
 
+
 struct ContentView: View {
     @State private var recipes: [Recipe] = DataLoader.loadRecipes()
 
@@ -7,12 +8,16 @@ struct ContentView: View {
         TabView {
             HomeView(recipes: $recipes)
                 .tabItem {
-                    Label("Home", systemImage: "house.fill")
+                    Label("My Recipes", systemImage: "house.fill")
                 }
-            Text("Cooking Tab")
-                .tabItem {
-                    Label("Cooking", systemImage: "flame.fill")
-                }
+            
+            AddRecipeView { newRecipe in
+                recipes.append(newRecipe)
+                DataLoader.saveRecipes(recipes)
+            }
+            .tabItem {
+                Label("Add Recipe", systemImage: "plus.diamond")
+            }
         }
     }
 }
