@@ -7,6 +7,7 @@
 import Foundation
 
 enum Status: String, Codable, CaseIterable, Hashable {
+    case all = "All"
     case toCook = "To Cook"
     case cooked = "Cooked"
     case cooking = "Cooking"
@@ -19,4 +20,5 @@ struct Recipe: Identifiable, Codable {
     var status: Status
     var estimatedTime: Int
     var images: [String]
+    var progress: Int
 }

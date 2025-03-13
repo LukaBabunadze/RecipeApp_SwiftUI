@@ -20,6 +20,8 @@ struct AddRecipeView: View {
     @State private var showMultiImagePicker: Bool = false
     @State private var showCameraPicker: Bool = false
     
+    @State private var progress: Double = 0 
+
     var onSave: (Recipe) -> Void
 
     var body: some View {
@@ -33,14 +35,22 @@ struct AddRecipeView: View {
                 }
                 Section(header: Text("Status")) {
                     Picker("Status", selection: $selectedStatus) {
-                        ForEach(Status.allCases, id: \.self) { status in
+                        ForEach(Status.allCases.filter { $0 != .all }, id: \.self) { status in
                             Text(status.rawValue).tag(status)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
                 }
+                
+                Section(header: Text("Progress")) {
+                    VStack {
+                        Text("Progress: \(Int(progress))%")
+                        Slider(value: $progress, in: 0...100, step: 1)
+                            .accentColor(.blue)
+                    }
+                }
+                
                 Section(header: Text("Photo")) {
-                    
                     if !selectedImages.isEmpty {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
@@ -56,14 +66,12 @@ struct AddRecipeView: View {
                         }
                     }
                     
-                    
                     Button("Select from Library") {
                         showMultiImagePicker = true
                     }
                     Button("Take Photo") {
                         showCameraPicker = true
                     }
-                    
                 }
             }
             .navigationTitle("Add Recipe")
@@ -85,7 +93,8 @@ struct AddRecipeView: View {
                         description: description,
                         status: selectedStatus,
                         estimatedTime: Int(estimatedTime) ?? 0,
-                        images: imagePaths
+                        images: imagePaths,
+                        progress: Int(progress) // Save the progress value from the slider
                     )
                     onSave(newRecipe)
                     
@@ -94,6 +103,7 @@ struct AddRecipeView: View {
                     estimatedTime = ""
                     selectedStatus = .toCook
                     selectedImages = []
+                    progress = 100 // Reset progress to 100% after saving
                     
                     presentationMode.wrappedValue.dismiss()
                 }
@@ -111,20 +121,19 @@ struct AddRecipeView: View {
                 }
             }
         }
-    }
-    
+    }    
     private func saveImageToDocuments(image: UIImage) -> String? {
-            guard let data = image.jpegData(compressionQuality: 0.8) else { return nil }
-            let filename = UUID().uuidString + ".jpg"
-            let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                .appendingPathComponent(filename)
-            do {
-                try data.write(to: fileURL)
-                return fileURL.path
-            } catch {
-                print("Error saving image: \(error)")
-                return nil
-            }
+        guard let data = image.jpegData(compressionQuality: 0.8) else { return nil }
+        let filename = UUID().uuidString + ".jpg"
+        let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent(filename)
+        do {
+            try data.write(to: fileURL)
+            return fileURL.lastPathComponent
+        } catch {
+            print("Error saving image: \(error)")
+            return nil
+        }
     }
 }
 

@@ -1,0 +1,92 @@
+ [
+   {
+     "id": 1,
+     "title": "Spaghetti Carbonara",
+     "description": "Pasta, eggs, cheese, pancetta, and pepper.",
+     "status": "Cooked",
+     "estimatedTime": 30,
+     "images": ["https://images.pexels.com/photos/3764641/pexels-photo-3764641.jpeg"],
+     "progress": 91
+   },
+   {
+     "id": 2,
+     "title": "Chicken Curry",
+     "description": "Chicken, curry powder, coconut milk, onions, garlic.",
+     "status": "Cooking",
+     "estimatedTime": 45,
+     "images": ["https://images.pexels.com/photos/1070982/pexels-photo-1070982.jpeg"],
+     "progress": 45
+   },
+   {
+     "id": 3,
+     "title": "Chocolate Cake",
+     "description": "Flour, cocoa powder, eggs, sugar, butter, baking powder.",
+     "status": "To Cook",
+     "estimatedTime": 60,
+     "images": ["https://images.pexels.com/photos/1770545/pexels-photo-1770545.jpeg"],
+     "progress": 0
+   },
+   {
+     "id": 4,
+     "title": "Vegetable Stir Fry",
+     "description": "Broccoli, bell peppers, soy sauce, garlic, ginger.",
+     "status": "Cooked",
+     "estimatedTime": 25,
+     "images": ["https://images.pexels.com/photos/1640771/pexels-photo-1640771.jpeg"],
+     "progress": 100
+   },
+   {
+     "id": 5,
+     "title": "Beef Tacos",
+     "description": "Ground beef, taco seasoning, lettuce, cheese, salsa.",
+     "status": "Cooking",
+     "estimatedTime": 20,
+     "images": ["https://images.pexels.com/photos/1666820/pexels-photo-1666820.jpeg"],
+     "progress": 65
+   },
+   {
+     "id": 6,
+     "title": "Caesar Salad",
+     "description": "Lettuce, croutons, Caesar dressing, parmesan cheese.",
+     "status": "To Cook",
+     "estimatedTime": 15,
+     "images": ["https://images.pexels.com/photos/1174195/pexels-photo-1174195.jpeg"],
+     "progress": 0
+   },
+   {
+     "id": 7,
+     "title": "Grilled Cheese Sandwich",
+     "description": "Bread, butter, cheese.",
+     "status": "Cooked",
+     "estimatedTime": 10,
+     "images": ["https://images.pexels.com/photos/1640775/pexels-photo-1640775.jpeg"],
+     "progress": 100
+   },
+   {
+     "id": 8,
+     "title": "Chicken Alfredo",
+     "description": "Chicken, pasta, Alfredo sauce, parmesan cheese.",
+     "status": "To Cook",
+     "estimatedTime": 40,
+     "images": ["https://images.pexels.com/photos/1640776/pexels-photo-1640776.jpeg"],
+     "progress": 0
+   },
+   {
+     "id": 9,
+     "title": "Pancakes",
+     "description": "Flour, eggs, milk, butter, syrup.",
+     "status": "Cooking",
+     "estimatedTime": 15,
+     "images": ["https://images.pexels.com/photos/1041744/pexels-photo-1041744.jpeg"],
+     "progress": 31
+   },
+   {
+     "id": 10,
+     "title": "Salmon Fillet",
+     "description": "Salmon, olive oil, garlic, lemon.",
+     "status": "Cooked",
+     "estimatedTime": 20,
+     "images": ["https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg"],
+     "progress": 100
+   }
+ ]
