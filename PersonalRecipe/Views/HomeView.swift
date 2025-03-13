@@ -7,7 +7,6 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
-                // Picker to filter recipes based on status
                 Picker("Status", selection: $selectedStatus) {
                     ForEach(Status.allCases, id: \.self) { status in
                         Text(status.rawValue).tag(status)
@@ -16,7 +15,6 @@ struct HomeView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
 
-                // List of recipes filtered based on the selected status
                 List {
                     ForEach(filteredRecipes, id: \.id) { recipe in
                         NavigationLink(destination: RecipeDetailView(recipe: recipe, recipes: $recipes)) {
