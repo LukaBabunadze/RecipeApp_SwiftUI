@@ -9,17 +9,28 @@ struct HomeView: View {
                 ForEach(recipes) { recipe in
                     ZStack {
                         VStack {
-                            if let imageURL = URL(string: recipe.images.first ?? "") {
-                                AsyncImage(url: imageURL) { image in
-                                    image.resizable()
-                                        .scaledToFill()
-                                        .frame(height: 140)
-                                        .cornerRadius(10)
-                                        .clipped()
-                                } placeholder: {
-                                    ProgressView()
+                            if let imagePath = recipe.images.first {
+                                let imageURL = imagePath.hasPrefix("http") ? URL(string: imagePath) : URL(fileURLWithPath: imagePath)
+                                
+                                AsyncImage(url: imageURL) { phase in
+                                    if let image = phase.image {
+                                        image.resizable()
+                                            .scaledToFill()
+                                            .frame(height: 140)
+                                            .cornerRadius(10)
+                                            .clipped()
+                                    } else if phase.error != nil {
+                                        Image(systemName: "photo")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(height: 140)
+                                            .foregroundColor(.gray)
+                                    } else {
+                                        ProgressView()
+                                    }
                                 }
                             }
+
 
                             HStack {
                                 VStack(alignment: .leading) {
